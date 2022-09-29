@@ -61,6 +61,31 @@ Consumer:
 	It can also pull the published message from brokers. 
 
 
+How Kafka Works
+-------------------------------
+
+1. Broker:
+     
+	One kafka cluster can have multiple brokers, these brokers are stateless, so to manage the state of the broker it uses zookeeper. One broker can handle multiple read and write operation a second without any problem.
+
+	If the leader broker fails --> who will deside the which follwer will become a leader?
+	--> leader election done by the zookeeper.
+
+
+2. Zookeeper:
+
+	Basically it is used to manage and coordinate kafka broker. it notifying producer and consumer about the new broker addition or existing broker failure. According the notification received by the zookeeper producer and consumer can take the decision and start cordingatiom with working brokers.
+
+3. Producers:
+
+	Push the data to the brokers. if new broker added then it search the same and automatically sends a message to that broker. Producers never waits for the acknoledgement from the broker, it sends the messages as fast as the broker can handle.
+
+4. 
+
+	Pull the data from the brokers.
+	Brokers are statelessso consumer has to maintain the message synchronization. That it can manage by using offset. If the consumer acknowledge a perticular offset means it has already consumed all previous messages. Consumer offset value notified by zookeeper.
+
+
 
 
 

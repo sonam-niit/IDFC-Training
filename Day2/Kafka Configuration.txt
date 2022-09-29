@@ -1,0 +1,88 @@
+Download Kafka from https://kafka.apache.org/downloads
+-------------------------------------------------------------
+
+Download scala 2.12 
+
+extract the tar file and give the folder name to kafka and put that in D: or E: drive.
+
+open cmd
+
+move to the kafka folder and check java version first
+
+> java -version
+
+of not getting then you can set the environment variable else you can set temporary path using set path command.
+
+>set path = path of jdk bin folder
+
+Let's check the kafka topics with its description
+--------------------------------------------------------
+
+>bin\windows\kafka-topics.bat
+
+If you want check the kafka version you can see by using --version flag
+
+>bin\windows\kafka-topics.bat --version
+
+let's start zookeeper
+-------------------------------
+
+open config folder --> zookeeper.properties
+
+change DataDir= D:/kafka/data/zookeeper
+
+>bin\windows\zookeeper-server-start.bat config\zookeeper.properties
+
+which will start zookeeper and you can also check the dara Dir which must has folder Version2.
+
+
+Let's start Kafka Server
+---------------------------------------
+
+Move to config> server.properties
+
+log.dirs=D:/kafka/data/kafka
+
+Open another CMD and execute below menioned
+
+bin\windows\kafka-server-start.bat config\server.properties
+
+-----------------------------------------------------------------------------
+
+Let's Create Topic
+----------------------------
+>bin\windows\kafka-topics.bat --create --topic firsttopic --bootstrap-server localhost:9092
+
+>bin\windows\kafka-topics.bat --create --topic secondtopic --bootstrap-server localhost:9092
+
+>bin\windows\kafka-topics.bat --create --topic thirdtopic --bootstrap-server localhost:9092 --partitions 3 --replication-factor 1
+
+
+To List the Topics
+------------------------
+>bin\windows\kafka-topics.bat --bootstrap-server localhost:9092 -list
+
+To Describe the topics
+-----------------------------
+
+>bin\windows\kafka-topics.bat --bootstrap-server localhost:9092 --describe --topic thirdtopic
+
+To Delete the Topic
+-------------------------
+bin\windows\kafka-topics.bat --bootstrap-server localhost:9092 --topic thirdtopic --delete
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

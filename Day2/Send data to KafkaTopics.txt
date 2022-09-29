@@ -1,0 +1,72 @@
+First of all make sure zookeeper and kafka server running.
+
+Let's check kafka-console-producer.bat
+
+open cmd
+
+>bin\windows\kafka-console-producer.bat
+
+Let's send data as producer to broker
+-------------------------------------------
+
+>bin\windows\kafka-console-producer.bat --bootstrap-server localhost:9092 --topic firsttopic
+
+when you execute this command you can enter multiple messages
+
+to exit press ctrl+c and type y
+
+Let's Try to send the message to the broker which is actually not available
+>bin\windows\kafka-console-producer.bat --bootstrap-server localhost:9092 --topic test
+
+enter the message and it will give you some warning
+
+enter another messages 
+
+It will create that Topic, you can check by executing below command
+
+>bin\windows\kafka-topics.bat --bootstrap-server localhost:9092 --list
+
+you can alos execute the describe command
+
+>bin\windows\kafka-topics.bat --bootstrap-server localhost:9092 --describe --topic test
+
+
+________________________________________________________________________________________________
+
+Consumer Console
+
+to work with the consumer console we have kafka-console.consumer
+
+>bin\windows\kafka-console-consumer.bat
+
+Lets' Consume Messages
+-------------------------------
+
+>bin\windows\kafka-console-consumer.bat --bootstrap-server localhost:9092 --topic firsttopic
+
+(It started consuming the messages but producer has not send any data yet)
+
+open another terminal
+
+and try to produce the message again.
+
+When you send those messages are visible in consumer console.
+
+If you want check Prevoiusly send message by producer then use --from-begining flag.
+
+>bin\windows\kafka-console-consumer.bat --bootstrap-server localhost:9092 --topic firsttopic --from-beginning
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

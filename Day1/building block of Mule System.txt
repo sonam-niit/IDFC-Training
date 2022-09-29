@@ -1,0 +1,88 @@
+Building Blocks of Mule Config
+
+Spring Beans: used to construct service component. once the component is created, we can define it through some config file or manually.
+
+Agents: it is a service which is created in Anypoint before the mule studio. Agent is created when you start the server and destroyed when you stop the server.
+
+Connector: it is a software component which is configured with some parameters which is aving some prototcols. you can control the protocols. 
+
+example: JMS connector using that we can create connectiuon and share entities between the real communication.
+
+Global Configuration: used to set global properties.
+
+Global Endpoint: for generating global endpoints using that we can access the global config as many times as we want to fetch.
+
+Global Message Processor: it observes and modifiy the message if required. on that you can apply global transformers and filters.
+	transformer: convert the data from one format to another
+	filter: filters the data according to the conditions which it is pecifying.
+
+Models: logical grouping of services in the studio called models. we can also start and stop all services inside a models.
+
+	services: wraping the busingess logic
+
+Flows: Message processor use flows to define message between source and target
+
+
+Mule's Message Architecure
+---------------------------------------
+
+Header: metadata of a message
+
+1. Inbound Properties: automaticlly it sets by the message source.
+		       it is not possible to set mauallu by user. (immutable)
+
+2. Outbound Properties: 
+
+			this is similar like outbound property but you can set this during the course of flow.
+
+			you can set by your own(manual) or set by Mule (automatic) 
+
+			
+3. Payload: original message
+
+4. Variables: user defined metadata of a message.
+		these are temporary pieces of info of a message which used to process.
+
+	diffrent types of variables
+
+	1. system variable: apply across all flows in a same application
+	2: record variable:apply only to the records, processed a part of a batch
+	3: flow variable: apply only on a flow which exist
+
+
+Attachment and Extra Payload:
+
+extra metadata about message payload which is not complasary to sent everytime with the object.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

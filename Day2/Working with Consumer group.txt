@@ -1,0 +1,32 @@
+Multiple Consumer belongs to the consumer group.
+
+Consumer Group is basically represents the name onf an application.
+
+to give the group name --group 
+
+---------------------------------------------------------
+
+1. open the terinal and start both zookeeper and kafka server.
+
+2. create topic with 3 partitions.
+
+>bin\windows\kafka-topics.bat --topic mytopic --create --bootstrap-server localhost:9092 --partitions 3 --replication-factor 1
+
+3. check the topic details
+
+> bin\windows\kafka-topics.bat --describe --topic mytopic --bootstrap-server localhost:9092
+
+4. open another cmd and create consumer with one group name
+>bin\windows\kafka-console-consumer.bat --bootstrap-server localhost:9092 --topic mytopic --group firstapp
+
+4. open another teminal and create one more consumer with same group name.
+
+>bin\windows\kafka-console-consumer.bat --bootstrap-server localhost:9092 --topic mytopic --group firstapp
+
+5. open one more terminal and send the messages from producer.
+>bin\windows\kafka-console-producer.bat --bootstrap-server localhost:9092 --topic mytopic
+
+send multiple messages and press ctrl+c to terminate.
+
+Now you can check consumer console which have 3 messages each.
+

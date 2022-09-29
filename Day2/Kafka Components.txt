@@ -1,0 +1,80 @@
+Kafka fundamentals
+----------------------------
+
+Topic:
+ a stream of messages which are from similar category. we can store data in  topics.
+
+Topics Divided into Partitions:
+
+	kafka maintain atleast one partition for one topic.
+
+	this partitions contains the data (messages) in ordered sequence.
+
+	---> if you jave multiple partitions --> they are implemented as a set of files with equal sizes.
+
+Partitions:
+
+	Topics can be divided into multiple partitions to handle the huge amount 	of data.
+
+Partition Offset:
+
+	each partition message has a unique seq id which called as an offset.
+
+Replicas:
+
+	backup of partitions. It never performs read write operations but in any case if is there any data loss 	then your can take backup from the same.
+
+
+Brokers:
+	these are the systems which is responsible for maintaining published data.
+	In brokers also you can have multiple partitions per topic.
+
+	If you have 10 partitions in one topic then --> 10 brokers.
+
+	if I am having 10 brokers and 5 partitions then 5 partitions aligned to 5 brokers and others brokers doesn't have any partition for perticulr topic.
+
+	what if Brokers ar less than the numbers of partitions?
+	Brokers:10
+	Partitions:15
+
+	each broker can have one or more partition in a sharing.
+
+	(not suggested to use)
+
+Cluster: Kafka is having more than one broker it is combined as a cluster. If you want expand the same it is possible without any down time. (adding one broker is possible in a cluster)
+
+
+Leader:
+	this machine (node) is responsible for all read write operations for given partition. 
+
+	each partiition has one server which acts as a leader.
+
+Follower: 
+	follows the instruction provided by the leader node. if Leader node fails then any of the follower can 	become a leader node.
+
+Producers: they are publishers of kafka topics. Producres produce the data and send to kafka brokers. Everytime producer publish the message and broker add that message at the end of the file. Actully it is appended to the patition. Producer can also send the mesage to the required partition too.
+
+Consumer:
+
+	Consuming the data from the broker of diffrent topics.
+
+	It can also pull the published message from brokers. 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+

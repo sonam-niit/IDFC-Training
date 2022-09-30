@@ -1,0 +1,32 @@
+Create Topic with SpringBoot and Kafka
+-----------------------------------------
+
+we can use TopicBuilder to build a topic
+
+where you can give the number of partitions
+no of replicas
+
+
+@Bean
+	NewTopic generalTopic() {
+		return TopicBuilder.name("general")
+				.partitions(3)
+				.replicas(1)
+				.build();
+	}
+
+------------------------------------------------------------------------
+You can also set some topic configuration properties as well
+
+@Bean
+	NewTopic generalTopic() {
+		return TopicBuilder.name("general")
+				.partitions(3)
+				.replicas(1)
+				.config(TopicConfig.COMPRESSION_TYPE_CONFIG, "")
+				.build();
+	}
+
+___________________________________________________________________________
+
+

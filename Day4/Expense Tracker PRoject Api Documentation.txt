@@ -1,0 +1,48 @@
+Manager
+--------------------
+
+1.  /api/expense/ -- get mapping (to get all expenses)
+
+2.  /api/expense/{id} -- get mapping (to get expense by ID)
+
+3.  /api/expense/ -- post maping (create new expense)
+
+4.  /api/expense/{id} -- put mapping (update expense)
+
+5.  /api/expense/{id} -- delete mapping (delete Expoenses)
+
+HR
+-------------------------------------
+
+if HR wants to see all expense then he can use the manager get all api and manger
+
+get by Id
+
+if HR wants reject the expense then He can use the previcoly created 
+delete API
+
+If HR wants to approve the Expense (he wants to approve expense for ID 3)
+
+6.  /api/expense/approve/{id} -- post mapping
+
+execute the method to update the perticular expense
+
+Expense expense = repo.findById(3).get().
+expense.setApproved(1);
+
+repo.save(expense);
+
+
+get All not approved APIs and get all approved apis
+
+7.  /api/expense/approved/ -- (get All approved)
+8.  /api/expense/notapproved -- (get all not approved apis)
+
+------------------------------------------------------------------------
+
+/api/expense/budget
+
+9.  (get all apis and calculate the budget and return it)
+
+
+

@@ -1,0 +1,27 @@
+
+@PostMapping("/api/expense/{id}")
+ResponseEntity<Object> addExpense(@PathVariable int id,@RequestBody Expense expense)
+{
+	Expense result=addExpnese(int id, Expense expense);
+
+	if(result!=null)
+		return new ResponseEntity(result,HttpStatus.OK);
+	else
+		return new ResponseEntity("Not valid user to add expense",HttpStatus.Not_Found);
+}
+
+
+Service
+--------------
+
+Expense addExpense(int id, Expense expense){
+
+	Expense result=null;
+	User user= repo.getFindById(id).get();
+	if(user.getRole()==0)
+	{
+		expense= repo.save(expense);
+	}
+
+	return expense;
+}

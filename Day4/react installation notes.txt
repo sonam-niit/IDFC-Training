@@ -1,0 +1,32 @@
+Install React
+--------------------------
+
+Install Node js https://nodejs.org/en/download/ from this site.
+
+once node installed successfully check node and npm version.
+
+>node -v
+
+>npm -v
+
+Let's install React
+
+>npm install -g create-react-app
+
+Let's create a React Application
+
+>create-react-app firstapp
+
+Once the application created move to the application folder and execute npm start command
+
+>cd firstapp
+>npm start
+
+download visual studio code from the link
+https://code.visualstudio.com/download
+
+install the same and open the folder of your application on vs code.
+
+
+
+

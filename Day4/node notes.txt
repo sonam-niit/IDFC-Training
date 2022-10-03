@@ -1,0 +1,47 @@
+NPM: node package Manager
+------------------------------------
+
+whenever you execute the command npm i (install)
+
+it will download that package to your system.
+
+Package.json file
+---------------------------
+
+it is a very important file for node project.
+
+provide basic details of application and also provide the required dependency of your application.
+
+How to create?
+
+npm init -y
+
+This will give you package.json file
+
+if you install some packages it will update the json file automatically.
+
+>npm install bootstrap
+>npm install create-react-app
+
+once install all this module after that check your package.json file.
+
+Your application also have one folder(node_modules) and one file (package-lock.json)
+this folder has all the installed packages and this locka files has from which location the packages downloaded.
+
+If your node_modules folder get deleted you can get it back by executing 
+
+>npm install 
+
+command
+
+
+
+
+
+
+
+
+
+
+
+

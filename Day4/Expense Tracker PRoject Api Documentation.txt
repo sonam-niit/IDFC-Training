@@ -44,5 +44,24 @@ get All not approved APIs and get all approved apis
 
 9.  (get all apis and calculate the budget and return it)
 
+______________________________________________________________________________________
+
+Login Api
+
+
+10. /api/user/login -- Post mapping
+
+(Response provide - welcome manager or Welcome Admin or Welcome HR according 
+to the user Role)
+
+Update Password
+
+11. /api/user/updatepwd --postmapping
+
+execute update query for pwd updation
+
+
+
+
 
 

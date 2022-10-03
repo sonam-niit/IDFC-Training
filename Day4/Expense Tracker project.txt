@@ -1,0 +1,39 @@
+Expense Tracker
+----------------
+
+
+There is Company called XYZ.com tries to manage their expenses by doing manuall calculation but while calculating overall buget admin coudn't verify everything in proper details. So now they wants to make this system as an online system.
+
+They hired you as a full stack developer and they want a proper prototype of this expense tracker with Backend.
+
+Kindly help this company to solve the Problem.
+
+The portal is having 3 type of users.
+
+Diffrent Users having diffrent functionaly to work on the system.
+
+Manager:
+
+	Manager can login/logout
+		can change password
+		add expenses
+		update expenses
+		delete expenses
+		can check all details approved by HR
+
+HR:
+
+		login/logout
+		change password
+		verify the new expenses
+		approve or reject the expenses
+		check all approved and not approved expenses
+
+Admin:
+		login/logout
+		change password
+		check verified expenses by HR
+		calculate the final budget
+		
+Now you need to create a RESTful Web services for this requirement.
+

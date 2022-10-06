@@ -1,0 +1,32 @@
+useeffect hook
+-----------------------
+Use effect hook allows you to perform side effects in your component.
+
+example: fetch data, update dom directly, in some timers.
+
+useEffect can accept 2 arguments.
+
+useEffect(function, dependency)
+
+2nd argument is optional.
+
+Example of UseEffect
+-------------------------------------------
+
+useEffect(()=>{document.title = `You clicked ${count} ${counter} times` 
+
+//withoput 2nd parameter
+
+will work everytime whne the state get changed
+
+useEffect(()=>{document.title = `You clicked ${count} ${counter} times` },[]);
+
+//2nd parameter empty array then it will execute once when the intialization happens.
+
+useEffect(()=>{document.title = `You clicked ${count} ${counter} times` },[count]);
+
+//if ypu want to execute only when some variable state get changed then you can give that variable name in that 2nd argument.
+
+useEffect(()=>{document.title = `You clicked ${count} ${counter} times` },[count,counter]);
+
+//use effect works when both the variables state get updated.

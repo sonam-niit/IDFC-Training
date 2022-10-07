@@ -30,3 +30,103 @@ useEffect(()=>{document.title = `You clicked ${count} ${counter} times` },[count
 useEffect(()=>{document.title = `You clicked ${count} ${counter} times` },[count,counter]);
 
 //use effect works when both the variables state get updated.
+
+
+*******************************************************************************************************
+
+UseContext Hook
+---------------------------------------------------------------------------------------------
+
+to access the state of one component from another component
+
+without context
+
+import {React, useState } from "react";
+//witout context pass props to evry component
+export function Comp1(){
+
+    const [user,setUser]=useState({fname:"sonam",lname:"soni"});
+    return (
+      <div>
+        <h1>this is my component 1</h1>
+        <h2>Hello {user.fname} {user.lname}</h2>
+        <Comp2 user={user}/>
+      </div>
+    )
+  }
+  export function Comp2(props){
+    const user= props.user;
+    return (
+      <div>
+        <h1>this is my component 2</h1>
+        <h2>Hello {user.fname} {user.lname}</h2>
+        <Comp3 user={user}/>
+      </div>
+    )
+  }
+  export function Comp3(props){
+    const user= props.user;
+    return (
+      <div>
+        <h1>this is my component 3</h1>
+        <h2>Hello {user.fname} {user.lname}</h2>
+        <Comp4 user={user} />
+      </div>
+    )
+  }
+  export function Comp4(props){
+    const user= props.user;
+    return (
+      <div>
+        <h1>this is my component 4</h1>
+        <h2>Hello {user.fname} {user.lname}</h2>
+      </div>
+    )
+  }
+
+______________________________________________________________________________________________________
+
+with context
+
+import { createContext, React, useContext, useState } from "react";
+//with context no need to pass create context and
+//use it every ocmponent
+const UserContext = createContext();
+export function Component1() {
+
+  const [user, setUser] = useState({ fname: "sonam", lname: "soni" });
+  return (
+    <div>
+      <UserContext.Provider value={user}>
+        <h1>this is my component 1</h1>
+        <h2>Hello {user.fname} {user.lname}</h2>
+        <Component2 />
+      </UserContext.Provider>
+    </div>
+  )
+}
+export function Component2() {
+  return (
+    <div>
+      <h1>this is my component 2</h1>
+      <Component3 />
+    </div>
+  )
+}
+export function Component3() {
+  return (
+    <div>
+      <h1>this is my component 3</h1>
+      <Component4 />
+    </div>
+  )
+}
+export function Component4() {
+  const user= useContext(UserContext);
+  return (
+    <div>
+      <h1>this is my component 4 Access User Value in Component 4</h1>
+      <h2>Hello {user.fname} {user.lname}</h2>
+    </div>
+  )
+}

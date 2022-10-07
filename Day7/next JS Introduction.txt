@@ -1,0 +1,136 @@
+Introduction to NextJS
+----------------------------------------
+
+-NextJs is the meta framework for React. 
+-Basically it provides some tools and conventions which makes easy development for developer.
+
+
+when we create simple react application --> working successfully --> build app --> put it in production environment --> After putting this in a production is is there any issue then you need to handle the same. Regular React application which we are creating which is called CSR (Client Side Rendering)
+
+Next Js provides extra rendering options like SSR (Server Side Rendering), SSG (Static Site Generation).
+
+Simple word we can say, using next JS easy to manage pages, component based rendering stratergy.
+
+It also provides the features like bundling, Optimised assets for production, code splitting, typescript support.
+
+Create App
+--------------------
+
+npx create-next-app demoapp
+
+cd demoapp
+
+npm run dev
+
+__________________________________________________________________________--
+
+Create users.js file in pages
+
+import { useEffect, useState } from "react";
+
+export default function Users(){
+    const [data,setData]= useState(null);
+    const [isLoading, setLoading]=useState(false);
+
+    useEffect(()=>{
+        setLoading(true)
+        fetch('https://jsonplaceholder.typicode.com/users/1')
+        .then((res)=>res.json())
+        .then((data)=>setData(data))
+        setLoading(false)
+    },[])
+
+    if(isLoading) return <p>Loading....</p>
+    if(!data) return <p>No Data Available</p>
+
+    return(
+        <div>
+            <h1>{data.name}</h1>
+            <h3>{data.email}</h3>
+        </div>
+    )
+}
+
+_________________________________________________________________
+
+access localhost:3000/users.
+
+______________________________________________________________________________
+
+to work with SWR install it by using
+
+>npm install swr command
+
+it is highly recomondded to fetch data from client side. You can manage catching, revalidation, focus tracking etc.
+
+import useSWR from "swr";
+
+export default function Users(){
+   
+    const fetcher= (...args)=> fetch(...args).then((res)=>res.json())
+    const {data,error} = useSWR('https://jsonplaceholder.typicode.com/users/2',fetcher)
+
+    if(error) return <div>failed to load data</div>
+    if(!data) return <div> Loading....</div>
+    return(
+        <div>
+            <h1>{data.name}</h1>
+            <h3>{data.email}</h3>
+        </div>
+    )
+}
+
+______________________________________________________________________________________________
+
+Routing in Next JS
+
+
+import Link from "next/link";
+
+export default function Home(){
+
+    return (
+        <ul>
+            <li>
+                <Link href="/api/hello">
+                    <a>Hello</a>
+                </Link>
+            </li>
+            <li>
+                <Link href="/info">
+                    <a>Info</a>
+                </Link>
+            </li>
+            <li>
+                <Link href="/users">
+                    <a>Users</a>
+                </Link>
+            </li>
+        </ul>
+    )
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

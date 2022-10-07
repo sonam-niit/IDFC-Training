@@ -1,0 +1,513 @@
+Core Components of React Native
+--------------------------------------------
+
+1. View
+------------------
+
+-It is a container which supports the layout with flexbox, style, some touch handling and accessibility control.
+-I maps directly with the native view.
+
+-We can add multiple child views inside a view. 
+
+2. Text
+-------------------------------
+
+It is basically used to display text.
+
+we can do nesting of text, styling of text.
+Also manage touch handling.
+
+to handle the press event use onPress
+
+3. Image
+-----------------------------------
+
+with React native we can display diffrent types of images like static, network images, local images etc.
+
+example
+-------------
+
+import React, { useState } from "react";
+import { Image, StyleSheet, Text, View } from "react-native";
+
+const App= ()=>{
+  
+  return (
+    <View style={styles.container}>
+      <Image style={styles.tinylogo} source={{uri:"https://reactnative.dev/img/tiny_logo.png"}}></Image>
+
+      <Image style={styles.logo} source={{uri:"https://reactnative.dev/img/tiny_logo.png"}}></Image>
+    </View>
+  )
+}
+const styles= StyleSheet.create({
+  container:{
+    paddingTop:50
+  },
+  tinylogo:{
+    width:50,
+    height:50
+  },
+  logo:{
+    width:66,
+    height:58
+  }
+})
+
+export default App;
+
+4. Text Input:
+
+using this we can take input from users via keyboard.
+
+props for some features like auto-correction, auto capitalization, place holder text and we can include numeric keypad for mobile number input.
+
+
+import React, { useState } from "react";
+import { Image, StyleSheet, Text, TextInput, View } from "react-native";
+
+const App= ()=>{
+  
+  const [text,setText]= useState("This is my Text");
+  const [number,onNumberChange]=useState(null);
+
+  return (
+    <View>
+      <TextInput style={[styles.input, styles.test]} placeholder="Enter Name"   value={text} onChangeText={setText} />
+      <TextInput style={styles.input} placeholder="enter nmber" keyboardType="numeric" 
+      value={number} onChangeText={onNumberChange} /> 
+      <Text>
+        Welcome {text}
+        {"\n"}
+        Your Registered Number is {number}
+      </Text>
+      
+    </View>
+  )
+}
+const styles= StyleSheet.create({
+  input:{
+    height:40,
+    margin:12,
+    borderWidth:1,
+    padding:10
+  },
+  test:{
+    backgroundColor:"yellow"
+  }
+})
+
+export default App;
+____________________________________________________________________________________________
+
+5. Scroll View
+
+It is wraps the platform while providing integration with touch locking responder system.
+
+6.Stylesheet.
+
+Provides the abstraction layer similar to stylesheet.
+
+import React, { useState } from "react";
+import { SafeAreaView, ScrollView, StatusBar, StyleSheet, Text } from "react-native";
+
+const App = () => {
+
+  return (
+    <SafeAreaView style={styles.container}>
+      <ScrollView style={styles.scrollView}>
+        <Text style={styles.text}>
+          What is Lorem Ipsum?
+          Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
+          Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took
+           a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries,
+            but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in 
+            the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with
+            desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+        </Text>
+      </ScrollView>
+    </SafeAreaView>
+  )
+}
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    paddingTop: StatusBar.currentHeight
+  },
+  scrollView: {
+    backgroundColor: "yellow",
+    marginHorizontal: 20
+  },
+  text: {
+    fontSize: 40
+  }
+})
+
+export default App;
+
+__________________________________________________________________________________________________
+
+User Interface
+
+1. Button:
+
+basic button component for handling the touch which render on any platform.
+
+
+import React, { useState } from "react";
+import { Alert, Button, SafeAreaView, StyleSheet, Text, View } from "react-native";
+
+const App = () => {
+
+  const Separator = () => {
+    <View style={styles.seperator} />
+  }
+  return (
+    <SafeAreaView style={styles.container}>
+      <View>
+        <Text style={styles.title}>
+          Button Demo
+        </Text>
+        <Button title="Press Me" onPress={() => { Alert.alert('Button Clicked') }} ></Button>
+      </View>
+      <Separator />
+      <View>
+        <Text style={styles.title}>Button with Colour Adjustment</Text>
+        <Button title="Press Me" color="Red"
+          onPress={() => { Alert.alert('Button with adjusted colour') }}></Button>
+      </View>
+      <Separator />
+      <View>
+        <Text style={styles.title}>Disabled Button</Text>
+        <Button title="Press Me" disabled
+          onPress={() => { Alert.alert('You can not click') }}></Button>
+      </View>
+      <Separator />
+      <View>
+        <Text style={styles.title}>Layout stratergy with Button</Text>
+        <View style={styles.fixtoText}>
+          <Button title="Left Button"
+            onPress={() => { Alert.alert('Left Button Clicked') }}></Button>
+          <Button title="Right Button"
+            onPress={() => { Alert.alert('Right Button Clicked') }}></Button>
+        </View>
+      </View>
+    </SafeAreaView>
+  )
+}
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: "center",
+    marginHorizontal: 16
+  },
+  title: {
+    textAlign: "center",
+    marginVertical: 7,
+  },
+  fixtoText: {
+    flexDirection: 'row',
+    justifyContent: "space-between",
+  },
+  seperator: {
+    marginVertical: 7,
+    borderBottomColor: 'green',
+    borderBottomWidth: StyleSheet.hairlineWidth
+  }
+
+})
+
+export default App;
+
+___________________________________________________________________________________________
+
+2. Switch
+
+---------------
+
+used to render the boolean input
+
+import React, { useState } from "react";
+import { StyleSheet, Switch, Text, View } from "react-native";
+
+const App = () => {
+
+  const [isEnabled,setIsEnabled]=useState(false);
+
+  const toggleSwitch=()=>{
+    setIsEnabled(previousState=>!previousState)
+  }
+  return (
+    <View style={styles.container}>
+      <Text>Eligible for vote? </Text>
+      <Switch trackColor={{false:"red",true:"green"}}
+      thumbColor={isEnabled ? "green": "red"} value={isEnabled} onValueChange={toggleSwitch}
+      ></Switch>
+    </View>
+  )
+}
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center"
+  }
+
+})
+
+export default App;
+_________________________________________________________________________________________
+
+List Views
+--------------------------
+
+If we want to display a long list then list views required.
+
+1. FlatList
+
+--using this we can render performant scrollable list.
+
+import { FlatList, SafeAreaView, StyleSheet, Text, View } from "react-native";
+
+const DATA=[{id:1,title:"First Item"},{id:2,title:"Second Item"},
+  {id:3,title:"Third Item"},{id:4,title:"Fourth Item"},{id:5,title:"Fifth Item"}]
+
+  const Item = ({title})=>(
+    <View style={styles.item}>
+      <Text style={styles.title}>
+        {title}
+      </Text>
+    </View>)
+const App = () => {
+    const renderItem= ({item})=>(
+      <Item title={item.title}></Item>
+    );
+  return (
+    <SafeAreaView style={styles.container}>
+      <FlatList data={DATA} renderItem={renderItem} keyExtractor={item=>item.id}></FlatList>
+    </SafeAreaView>
+  )
+}
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center"
+  },
+  item:{
+    backgroundColor:"yellow",
+    padding:20,
+    marginVertical:8,
+    marginHorizontal:16
+  },
+  title:{
+    fontSize:32
+  }
+
+})
+
+export default App;
+
+2. SectionList
+
+-- similar like FlatList but you can cleare sections in that.
+
+Android Component Apis
+-------------------------------------
+
+1. Toast Android
+
+-- android Toast alert
+
+-- we set a string message with some duration time like short or long.
+
+import { Button, SafeAreaView, StatusBar, StyleSheet, ToastAndroid } from "react-native";
+
+const App = () => {
+  
+  const showToast=()=>{
+    ToastAndroid.show("Helloo this is my first Toast Notification",ToastAndroid.SHORT);
+  }
+  const showToastWithGravity=()=>{
+    ToastAndroid.show("Toast Demo with gravity",ToastAndroid.SHORT,ToastAndroid.CENTER)
+  }
+
+  const showToastWithGravityAndOffset=()=>{
+    ToastAndroid.show("Toast Notification with Gravity and Offset ",ToastAndroid.LONG,
+    ToastAndroid.BOTTOM,25,60)
+  }
+  return (
+    <SafeAreaView style={styles.container}>
+      <Button title="Toggle Toast" onPress={()=>showToast()}></Button>
+
+      <Button title="Toggle Toast with Gravity" onPress={()=>showToastWithGravity()}></Button>
+
+      <Button title="Toggle Toast with Graviy and Offset" onPress={()=>showToastWithGravityAndOffset()}></Button>
+    </SafeAreaView>
+  )
+}
+const styles = StyleSheet.create({
+  container:{
+    flex:1,
+    justifyContent:"center",
+    paddingTop:StatusBar.currentHeight,
+    backgroundColor:"pink",
+    padding:8
+  }
+})
+
+export default App;
+
+2. permissions in Android
+
+-PermissionAndroid provides access to Android permissions. Basic permission granted when application install but read contact, access camera, internet access provided by the user.
+
+import { Button, PermissionsAndroid, SafeAreaView, StatusBar, StyleSheet, Text } from "react-native";
+
+const requestCameraPermission = async() =>{
+  try{
+    const granted = await PermissionsAndroid.request(
+      PermissionsAndroid.PERMISSIONS.CAMERA,{
+        title:"My App Camera Permission", message:"It requires your camera permission so you can take better pictures",
+       // buttonNeutral:"Ask Me Later",buttonNegative:"Cancel",buttonPositive:"OK"
+      }
+    )
+    if(granted=== PermissionsAndroid.RESULTS.GRANTED)
+      console.log("You  can use camera")
+    else
+      console.log("Permission denied")
+  }
+  catch(err){
+    console.log(err)
+  }
+}
+const App = () => {
+  return (
+    <SafeAreaView style={styles.container}>
+     <Text>
+      Try Permission
+     </Text>
+     <Button title="Request Permission" onPress={()=>requestCameraPermission()}/>
+    </SafeAreaView>
+  )
+}
+const styles = StyleSheet.create({
+  container:{
+    flex:1,
+    justifyContent:"center",
+    paddingTop:StatusBar.currentHeight,
+    backgroundColor:"pink",
+    padding:8
+  }
+})
+
+export default App;
+____________________________________________________________________________________
+
+Modal:
+
+It provides a simple way to present content above enclosing view.
+___________________________________________________________________________
+
+Limitations of React native Application
+------------------------------------------------
+
+1. can not access more platform specific features
+2. not proving more typesafety
+3. Performance is still low than the native application
+4. Design wise it is not efficient
+5. Custom module - need to strach yourself to make more specific modules according to the requirements.
+6. updating issues: it is very hard to keep updated with latest React Native version. It is very complicated process.
+
+Task1: 
+
+Create one react native application with 2 textInput to accept numbers and four buttons with 1 text view.
+
+So use will enter numbers in 2 text input and when user clicks on + button it shows addition of 2 numbers in text similarly for other 3 buttons.
+
+Task2:
+
+create application with 3 text input, ask user to enter firstname, middlename and lastname when user click on submit button. show full name as toast notification in center.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
